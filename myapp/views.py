@@ -57,7 +57,7 @@ def pdf_upload(request):
         if pdf_file.name == '':
             return HttpResponse("No selected file")
 
-        # Process the PDF file to create a DOCX file content
+        
         docx_content = convert_pdf_to_docx(pdf_file)
 
         if docx_content is None:
@@ -116,18 +116,17 @@ def image_to_pdf(request):
 def words_to_pdf(request):
     if request.method == 'POST':
         try:
-            # Get the user-typed content from the request
             data = json.loads(request.body.decode('utf-8'))
             user_content = data.get('content', '')
 
-            # Create an image with Pillow
+            
             img = Image.new('RGB', (800, 600), color='white')
             d = ImageDraw.Draw(img)
 
-            # Use a default font (you can customize the font if needed)
+            
             font = ImageFont.load_default()
 
-            # Draw the user-typed content on the image
+            
             d.text((10, 10), user_content, font=font, fill='black')
 
             # Create a BytesIO buffer to store the PDF content

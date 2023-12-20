@@ -8,10 +8,10 @@ from docx import Document
 
 def extract_text_from_pdf(pdf_file):
     pdf_text = ""
-    pdf_buffer = pdf_file.read()  # Read the file content
+    pdf_buffer = pdf_file.read()  
 
     with fitz.open("pdf", pdf_buffer) as pdf:
-        # Determine the total number of pages
+        
         num_pages = pdf.page_count
 
         # Set the batch size (number of pages to process at once)
@@ -32,13 +32,11 @@ def extract_text_from_pdf(pdf_file):
     return pdf_text
 
 def convert_pdf_to_docx(pdf_file):
-    # Extract text from the PDF using PyMuPDF (fitz)
+
     pdf_text = extract_text_from_pdf(pdf_file)
 
-    # Create a new DOCX document
     doc = Document()
 
-    # Add the extracted text to the DOCX document
     doc.add_paragraph(pdf_text)
 
     # Save the DOCX document to a BytesIO buffer
