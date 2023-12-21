@@ -1,0 +1,244 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+  <title>Document</title>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Archivo+Black|Work+Sans');
+
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    font-family: 'Archivo Black', sans-serif !important;
+  background-color: black;
+
+}
+
+.tools{
+margin: 20px auto;
+  
+}
+
+.box{
+  width: 60%;
+  height: 800px;
+  margin: 0px 0 20px 0;
+  outline: none;
+  border-radius: 10px;
+  padding: 20px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 17px;
+  color: #616161;
+  border: 1px solid #eee;
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,.07);
+}
+
+h1{
+  font-family: 'Archivo Black', sans-serif !important;
+  text-align: center;
+}
+.bottomextras{
+  width: 60%;
+  margin: 0 auto 0 auto;
+  transition: all 1s !important;
+ 
+}
+
+.selection{
+  width: 15px !important;
+  position: relative;
+  top: 1px;
+}
+
+.date{
+    font-family: 'Work Sans', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+
+}
+</style>
+
+</head>
+
+<body>
+  <div class="date">
+  </div>
+  <div class="tools">
+
+    <select class="ui selection dropdown">
+      <option value="">Fonts</option>
+      <option value="0">Default</option>
+      <option value="1">Monospace</option>
+      <option value="0">Lato</option>
+      <option value="">Open Sans</option>
+      <option value="">Raleway</option>
+    </select>
+
+    <div class="ui icon buttons">
+      <button class="ui cap button"><i class="header icon"></i></button>
+      <button class="ui bold button"><i class="bold icon"></i></button>
+      <button class="ui  button"><i class="underline icon"></i></button>
+      <button class="ui button"><i class="text width icon"></i></button>
+      <button class="ui button"><i class="italic width icon"></i></button>
+      <button class="ui button"><i class="paragraph icon"></i></button>
+    </div>
+
+    <div class="ui icon buttons">
+      <button class="ui button"><i class="align left icon"></i></button>
+      <button class="ui button"><i class="align center icon"></i></button>
+      <button class="ui button"><i class="align right icon"></i></button>
+      <button class="ui button"><i class="align justify icon"></i></button>
+    </div>
+
+
+    <div class="ui icon buttons">
+      <button class="ui copy button" data-clipboard-target="#inputString"><i class="copy icon"></i></button>
+      <button class="ui button"><i class="cut icon"></i></button>
+      <button class="ui button"><i class="paste icon"></i></button>
+
+    </div>
+  </div>
+
+
+  <div contenteditable="true" class="box" id="inputString">
+    <h1 contenteditable="true" class="header">Hello</h1>
+    <p>This text can be edited by the user. Try writing something...</p>
+  </div>
+  <div class="bottomextras">
+    <button class="medium ui save  toggle button black" onclick="save()">Save</button>
+    <button class="medium ui red clear button" onclick="cancel()">Cancel</button>
+    <button class="ui green right floated button" onclick="convertToPdf()">Download
+</button>
+
+  </div>
+  <div class="div">
+    <a class="ui  label words"></a>
+    <a class="ui black label chars"></a>
+  </div>
+</body>
+<script>
+    function convertToPdf() {
+    // Get the user-typed words from the input field
+    var userInput = document.getElementById('inputString').innerHTML;
+
+    // Make an AJAX request to the server to handle the PDF conversion
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'words_to_pdf/', true);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          // Handle the response, e.g., show a success message
+          alert('PDF created successfully!');
+        } else {
+          // Handle the error, e.g., show an error message
+          alert('Error creating PDF');
+        }
+      }
+    };
+
+    // Send the user-typed words to the server
+    xhr.send(JSON.stringify({ content: userInput }));
+  }
+
+$(document).ready(function() {});
+var txt = $(".box p");
+var title = $(".box .header");
+
+$(".bold").on("click", function() {
+  txt.select().css("font-size", "24px");
+  txt.css("text-decoration", "underline");
+});
+
+//function to save text to localStorage
+function save() {
+  var randNum = Math.floor(Math.random() * 1000 + 1);
+
+  var title = $(".box h1").text();
+  var txt = $(".box p").text();
+  sessionStorage.setItem(title, txt);
+  console.log("Text has been saved");
+}
+
+function retreive() {
+  var stored = sessionStorage.getItem(2);
+  txt.text(stored);
+}
+
+function cancel() {
+  $(".clear").on("click", function() {
+    txt.text(" ");
+    sessionStorage.clear();
+  });
+
+  console.log("Text has been deleted");
+}
+//function to determine number of words and characters;
+function stats() {
+  var txt = $(".box p").text(),
+    title = $(".box h1").text(),
+    charCount = txt.length,
+    wordCount = txt.split(" ").length;
+
+  $(".words").text(wordCount + " Words");
+  $(".chars").text(charCount + " Characters");
+
+  console.log(charCount);
+  console.log(wordCount);
+}
+
+document.addEventListener("copy", function(e) {
+  var copied = window.getSelection().toString();
+  e.clipboardData.setData("text", copied);
+
+  console.log(copied);
+
+  console.log("Copiado");
+});
+
+document.addEventListener("cut", function(e) {
+  var copied = window.getSelection().toString();
+  e.clipboardData.setData("text", copied);
+
+  console.log(copied);
+
+  console.log("Copiado");
+});
+document.addEventListener("paste", function(e) {
+  var clipboardData = e.clipboardData || window.clipboardData;
+  var pastedData = clipboardData.getData("Text");
+
+  console.log(pastedData);
+
+  console.log("Pasted");
+});
+
+$(".copy").click(function(e) {
+  console.log("about to copy");
+  console.log(e);
+});
+
+function windowclose() {
+  if (sessionStorage.clear()) {
+    window.onbeforeunload = function(e) {
+      return "Have you saved your document?";
+    };
+  }
+}
+
+windowclose();
+$(".box").on("keyup", stats);
+
+setInterval(function() {
+  var d = new Date().toUTCString();
+  
+  $(".date").text(d);
+  
+}, 1000);
+</script>
+</html>

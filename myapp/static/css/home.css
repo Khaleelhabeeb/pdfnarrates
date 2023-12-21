@@ -1,0 +1,131 @@
+body {
+    border-color: #000000; }
+  
+  .small-xl {
+    font-size: 90%; }
+  
+  .img-faded {
+    opacity: .5; }
+  
+  .font-weight-medium {
+    font-weight: 600; }
+  
+  .heading-black {
+    font-weight: 800; }
+  
+  /* Box shadow */
+  .btn {
+    text-transform: uppercase;
+    font-size: 15px; }
+    .btn.btn-primary {
+      box-shadow: 0 8px 16px rgba(29, 233, 182, 0.3);
+      transition: all .2s ease-out; }
+      .btn.btn-primary:hover {
+        box-shadow: 0 8px 20px rgba(29, 233, 182, 0.35); }
+      .btn.btn-primary:active {
+        box-shadow: none !important; }
+    .btn.btn-secondary {
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+      transition: all .2s ease-out; }
+      .btn.btn-secondary:hover {
+        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.35); }
+      .btn.btn-secondary:active {
+        box-shadow: none !important; }
+    .btn.btn-success {
+      box-shadow: 0 8px 16px rgba(0, 230, 118, 0.3);
+      transition: all .2s ease-out; }
+      .btn.btn-success:hover {
+        box-shadow: 0 8px 20px rgba(0, 230, 118, 0.35); }
+      .btn.btn-success:active {
+        box-shadow: none !important; }
+    .btn.btn-info {
+      box-shadow: 0 8px 16px rgba(0, 229, 255, 0.3);
+      transition: all .2s ease-out; }
+      .btn.btn-info:hover {
+        box-shadow: 0 8px 20px rgba(0, 229, 255, 0.35); }
+      .btn.btn-info:active {
+        box-shadow: none !important; }
+    .btn.btn-warning {
+      box-shadow: 0 8px 16px rgba(255, 234, 0, 0.3);
+      transition: all .2s ease-out; }
+      .btn.btn-warning:hover {
+        box-shadow: 0 8px 20px rgba(255, 234, 0, 0.35); }
+      .btn.btn-warning:active {
+        box-shadow: none !important; }
+    .btn.btn-danger {
+      box-shadow: 0 8px 16px rgba(255, 23, 68, 0.3);
+      transition: all .2s ease-out; }
+      .btn.btn-danger:hover {
+        box-shadow: 0 8px 20px rgba(255, 23, 68, 0.35); }
+      .btn.btn-danger:active {
+        box-shadow: none !important; }
+    .btn.btn-light {
+      box-shadow: 0 8px 16px rgba(236, 239, 241, 0.3);
+      transition: all .2s ease-out; }
+      .btn.btn-light:hover {
+        box-shadow: 0 8px 20px rgba(236, 239, 241, 0.35); }
+      .btn.btn-light:active {
+        box-shadow: none !important; }
+    .btn.btn-dark {
+      box-shadow: 0 8px 16px rgba(17, 23, 26, 0.3);
+      transition: all .2s ease-out; }
+      .btn.btn-dark:hover {
+        box-shadow: 0 8px 20px rgba(17, 23, 26, 0.35); }
+      .btn.btn-dark:active {
+        box-shadow: none !important; }
+  
+  /*Navbar*/
+  .navbar.navbar-transparent {
+    opacity: 0.98; }
+  
+  @media (max-width: 992px) {
+    .navbar.navbar-transparent {
+      background-color: rgba(0, 0, 0, 0.4); } }
+  
+  .navbar .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #1de9b6;
+    text-transform: uppercase; }
+  
+  .navbar .navbar-nav .nav-item {
+    margin: 0 .7rem; }
+    .navbar .navbar-nav .nav-item .nav-link {
+      font-weight: 600; }
+  
+  .section-angle {
+    position: relative;
+    border-color: inherit;
+    background: #000000; }
+    .section-angle:before, .section-angle:after {
+      width: 0;
+      height: 0;
+      position: absolute;
+      content: "";
+      left: 0;
+      border: 0 solid transparent;
+      z-index: 3; }
+    .section-angle.top-left:before, .section-angle.top-right:before {
+      top: 0;
+      border-left-width: 100vw; }
+    .section-angle.bottom-left:after, .section-angle.bottom-right:after {
+      bottom: 0;
+      border-right-width: 100vw; }
+    .section-angle.bottom-left:after {
+      border-right-color: inherit; }
+    .section-angle.bottom-right:after {
+      border-bottom-color: inherit; }
+    .section-angle.top-left:before {
+      border-top-color: inherit; }
+    .section-angle.top-right:before {
+      border-left-color: inherit; }
+    @media (min-width: 992px) {
+      .section-angle.bottom-right:after, .section-angle.top-right:before {
+        border-bottom-width: 2rem; }
+      .section-angle.bottom-left:after, .section-angle.top-left:before {
+        border-top-width: 2rem; } }
+    @media (max-width: 767.98px) {
+      .section-angle.bottom-right:after, .section-angle.top-right:before {
+        border-bottom-width: 1rem; }
+      .section-angle.bottom-left:after, .section-angle.top-left:before {
+        border-top-width: 1rem; } }
