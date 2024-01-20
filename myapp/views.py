@@ -17,6 +17,9 @@ from img2pdf import convert
 def index(request):
     return render(request, "index.html")
 
+def home(request):
+    return render(request, "home.html")
+
 def upload(request):
     if request.method == "POST":
         if 'pdfFile' not in request.FILES:
@@ -44,8 +47,6 @@ def upload(request):
 
     return render(request, "upload.html")
 
-def home(request):
-    return render(request, "home.html")
 
 def pdf_upload(request):
     if request.method == "POST":
