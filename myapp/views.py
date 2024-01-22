@@ -7,7 +7,6 @@ from .utils import extract_text_from_pdf, convert_pdf_to_docx
 
 import json
 from gtts import gTTS
-from docx import Document
 import base64
 import io
 from io import BytesIO
@@ -42,7 +41,6 @@ def upload(request):
         # Encode audio data in Base64
         audio_base64 = base64.b64encode(audio_buffer.read()).decode('utf-8')
 
-        # Pass the Base64-encoded audio data to the result template
         return render(request, 'result.html', {'audio_data': audio_base64})
 
     return render(request, "upload.html")
@@ -153,3 +151,5 @@ def server_error(request):
 
 def not_found(request, exception):
     return render(request, 'errors/404.html', status=404)
+
+

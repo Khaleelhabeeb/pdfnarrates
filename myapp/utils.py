@@ -14,7 +14,7 @@ def extract_text_from_pdf(pdf_file):
         
         num_pages = pdf.page_count
 
-        # Set the batch size (number of pages to process at once)
+        # I Set the batch size (number of pages to process at once)
         batch_size = 100
 
         # Iterate through the pages in batches

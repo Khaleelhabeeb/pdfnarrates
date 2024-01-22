@@ -22,4 +22,6 @@ urlpatterns = [
     path("", include("myapp.urls")),
 ]
 
+handler500 = 'myapp.views.server_error'
+handler404 = 'myapp.views.not_found'
 
