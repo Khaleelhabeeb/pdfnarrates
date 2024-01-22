@@ -147,3 +147,9 @@ def words_to_pdf(request):
             return HttpResponse(f"Error: {str(e)}", status=500)
 
     return render(request, "words_to_pdf.html")
+
+def server_error(request):
+    return render(request, 'errors/500.html', status=500)
+
+def not_found(request, exception):
+    return render(request, 'errors/404.html', status=404)
